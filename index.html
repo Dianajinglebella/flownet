@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#222f30">
+  <meta name="description" content="Meet Flownet: a social network built around the people, ideas, and algorithms you choose. Explore the interactive product preview.">
+  <title>Flownet — A world connected. On your terms.</title>
+  <link rel="icon" href="./mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./laboratory.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Flownet home"><img src="./mark.svg" alt="" width="31" height="31">flownet<span class="brand-dot">✳</span></a>
+    <nav aria-label="Main navigation" class="desktop-nav"><a href="#why" data-i18n="navWhy">The network</a><a href="#algorithms" data-i18n="navAlgorithms">Your feed</a><a href="#creators" data-i18n="navCreators">For creators</a></nav>
+    <div class="header-actions"><button class="language-button" data-action="language" aria-label="切换为中文">中文</button><button class="button button-dark button-small" data-action="enter" data-i18n="tryFlownet">Enter Flownet <span>↗</span></button></div>
+  </header>
+  <main id="main">
+    <div id="landing"></div>
+    <section id="appView" hidden aria-label="Flownet product preview">
+      <div class="preview-banner"><span><span class="status-dot"></span><span data-i18n="appPreview">Product preview · Sample community · Your changes stay in this browser</span></span><button data-action="about" data-i18n="learnMore">What’s working ↗</button></div>
+      <div class="app-shell">
+        <aside class="app-sidebar"><div class="sidebar-top"><span class="overline" data-i18n="yourSpace">YOUR SPACE</span><nav aria-label="Feed navigation" id="feedNav"></nav><button class="button button-dark compose-button" data-action="compose" data-i18n="newPost">＋ Create a post</button></div><div class="sidebar-bottom"><div class="profile-mini" id="profileMini"></div><button class="sidebar-link" data-action="profile"><span>◎</span><span data-i18n="myProfile">My profile & data</span></button><a class="sidebar-link" href="#home"><span>←</span><span data-i18n="backHome">Back to Flownet</span></a></div></aside>
+        <div class="feed-main"><div class="feed-heading"><div><p class="eyebrow" data-i18n="feedEyebrow">A LITTLE MORE YOUR WORLD</p><h1 id="feedTitle">Your daily flow.</h1></div><button class="icon-button" data-action="settings" aria-label="Open feed settings">☷</button></div><div class="search-wrap"><span aria-hidden="true">⌕</span><input type="search" id="feedSearch" placeholder="Find a topic, person, or idea" aria-label="Search sample posts"></div><div id="topicChips" class="topic-chips"></div><div id="feedMeta" class="feed-meta" aria-live="polite"></div><div id="feedCards" class="feed-cards"></div><div class="feed-end" id="feedEnd"><span>✳</span><strong data-i18n="caughtUp">A little space to look up.</strong><p data-i18n="feedEnd">You’ve reached the end of this preview feed.</p></div></div>
+        <aside class="app-controls" aria-label="Feed controls"><div id="controlsPanel"></div><div class="creators-panel"><div class="panel-heading"><h3 data-i18n="peopleDiscover">People to discover</h3><span>↗</span></div><div id="suggestedCreators"></div><p class="small-note" data-i18n="samplePeople">Illustrative profiles for this preview.</p></div><div class="control-footnote"><span>✧</span><p data-i18n="localRanking">Transparent ranking, right in your browser. This preview uses local scoring, not a live AI model.</p></div></aside>
+      </div>
+    </section>
+  </main>
+  <dialog id="modal" aria-labelledby="modalTitle"><div class="modal-top"><span class="modal-brand">flownet /</span><button class="icon-button" data-action="close" aria-label="Close dialog">×</button></div><div id="modalBody"></div></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

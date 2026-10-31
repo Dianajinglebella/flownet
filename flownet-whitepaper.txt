@@ -1,0 +1,990 @@
+PAGE 1
+FLOWNET
+An AI-Native, Open Social Network
+Where Creators Own Their Audience and Algorithms Serve People
+"Imagine a social network that remembers why you came — not to be the product, but
+to find what genuinely matters to you. A place where the algorithm is yours:
+transparent, tunable, replaceable. Where a creator's relationship with their audience
+doesn't vanish when a platform changes its mind."
+v1.0 — October 2026
+Prepared by Flownet Core Team
+CONFIDENTIAL — This document is shared for informational purposes. Flownet is under active development; details may change.
+
+
+PAGE 2
+Flownet Whitepaper
+v1.0 — October 2026
+2
+Contents
+1.  Abstract ........................................................................ 3
+2.  The Problem: Broken Creator Economics ........................................... 3
+3.  The Vision: AI-Native Open Social ............................................... 6
+Why Now: Five Converging Tailwinds ........................................... 7
+4.  How It Works: A User's Journey .................................................. 8
+5.  Technical Architecture .......................................................... 9
+Positioning Relative to the AT Protocol ...................................... 12
+6.  The AI Feed System .............................................................. 13
+7.  Creator Economy & Monetization .................................................. 14
+8.  Tokenomics ...................................................................... 15
+9.  Go-to-Market Strategy ........................................................... 17
+10.  Roadmap ......................................................................... 19
+11.  Team & Advisors ................................................................. 20
+12.  Risks & Mitigations ............................................................. 20
+13.  References ...................................................................... 21
+
+
+PAGE 3
+Flownet Whitepaper
+v1.0 — October 2026
+3
+1. Abstract
+Social media was supposed to connect us. Instead, it trapped creators inside walled gardens, strip-mined
+user attention for ad revenue, and hid the machinery of recommendation behind opaque,
+engagement-maximizing algorithms. The result: a creator economy worth $249 billion in 2026, projected to
+exceed $1 trillion by 2033 (Coherent Market Insights) — built on rented land, where a single algorithmic
+tweak can erase a livelihood overnight. 78% of creators report burnout; 75% feel compelled to post
+constantly to appease opaque algorithms; 37% are considering leaving entirely (Patreon, Billion Dollar
+Boy, 2025).
+Flownet proposes a fundamentally different architecture. By combining user-controlled AI
+recommendation with portable, on-chain creator identity and an open algorithmic marketplace,
+Flownet makes the feed a tool the user wields — not a weapon wielded against them. Creators keep their
+audience relationships as cryptographically signed social graphs, immune to platform lock-in. And the
+economics flip: revenue flows from genuine value exchange — tipping, token-gated access, transparent
+sponsored placements — rather than from harvesting eyeball-hours.
+The timing is right. The SocialFi sector grew 300% year-over-year to $5 billion in 2025 (Chainalysis).
+Bluesky proved mainstream appetite for protocol-based social with 40 million users. Farcaster and Lens
+have validated the on-chain identity thesis — but none has delivered the full stack of usable AI, portable
+identity, and a working creator economy in a single product.
+This whitepaper outlines Flownet's thesis, its hybrid on-chain/off-chain architecture, the AI-native feed
+pipeline, and a three-phase roadmap from MVP to scale. It includes a detailed comparison with the AT
+Protocol (Kleppmann et al., 2024) — the most rigorous decentralized social protocol to date — and
+explains where Flownet extends beyond it. It is written for builders, investors, and anyone who believes
+the social internet deserves a second chance.
+2. The Problem: Broken Creator Economics
+Meet Ava. She's a food photographer with 180,000 followers on Instagram. Three years of daily posts,
+recipe collaborations, and community building. Then, one Tuesday morning, her reach drops 70%. No
+warning, no explanation. The algorithm changed. Ava's story is not unique — it is the universal experience
+of the modern creator.
+2.1  Platform Lock-In
+Today's social platforms hold creators hostage through a simple mechanism: the platform owns the
+relationship between a creator and their audience. A follower on Instagram is not the creator's follower —
+it is Instagram's user, shown the creator's content at Instagram's discretion. When a creator moves to a
+new platform, they start from zero. Their audience, their reputation, their content history — all left behind.
+
+
+PAGE 4
+Flownet Whitepaper
+v1.0 — October 2026
+4
+ 96% of creators earn less than $100K/year; 57% of full-time creators fall below the US living wage
+(Influencer Marketing Hub, NeoReach 2025)
+ 78% say the algorithm dictates their content decisions; 75% feel trapped in a cycle of constant posting
+(Patreon State of Create 2025)
+ 69% report financial insecurity from their work, with average income of $44K — but distribution is
+extremely top-heavy (Creators 4 Mental Health 2025)
+ Zero portability: follower lists, engagement history, and content metadata are not exportable in any
+meaningful way
+2.2  Opaque, Adversarial Algorithms
+The recommendation engine is the most powerful editorial force in human history, yet it operates in total
+darkness. Users cannot see why they are shown what they are shown. They cannot tune, swap, or disable
+the algorithm. The feed is optimized for a single metric — time-on-platform — which systematically favors
+outrage, sensationalism, and addictive loops over substance and serendipity.
+For creators, this means their work is not judged by its quality or relevance but by its ability to trigger
+engagement. A thoughtful essay loses to a screenshot of a hot take. A ten-minute tutorial loses to a
+fifteen-second clip. The algorithm does not reward craft; it rewards compliance with its invisible incentives.
+2.3  Extractive Monetization
+The dominant business model of social media — surveillance advertising — creates a three-way
+misalignment. Users want relevance and privacy. Creators want fair compensation and audience access.
+Advertisers want targeting precision. The platform, caught in the middle, resolves every conflict in favor of
+ad revenue. Users are profiled. Creators are throttled unless they pay to boost. And the value a creator
+generates flows overwhelmingly to the platform, not to the creator.
+The Web3 social movement — Farcaster, Lens Protocol, Steemit, Friend.tech — has articulated these
+problems clearly. But most solutions have optimized for decentralization as an end in itself, producing
+technically impressive protocols that remain unusable for mainstream creators. The missing piece is not
+more blockchain; it is better AI — AI that works for the user.
+2.4  Competitive Landscape
+Several projects have attempted to fix social media's broken incentives. Each has made meaningful
+progress on a subset of the problem — but none has delivered the full stack: usable AI, portable identity,
+and a working creator economy.
+
+
+PAGE 5
+Flownet Whitepaper
+v1.0 — October 2026
+5
+Platform
+Decentralized
+Identity
+User-Controlled
+AI Feed
+Creator
+Monetization
+Mainstream
+UX
+Farcaster
+Yes (Hubs)
+No (basic
+chrono feed)
+Limited
+(tips only)
+Moderate
+(crypto-native)
+Lens Protocol
+Yes (Polygon)
+No (client-
+dependent)
+Limited
+(collect modules)
+Low
+(wallet required)
+Bluesky
+Yes (AT Proto
+DIDs + Handles)
+Partial
+(Feed Generators,
+no AI/explain)
+None
+(no monetization
+by design)
+High
+(Twitter-like)
+Friend.tech
+Partial
+(Base L2 keys)
+No
+(none)
+Yes
+(key trading)
+Low
+(speculation-
+driven)
+Flownet
+Yes (Ceramic +
+Base L2)
+Yes (open algo
+marketplace)
+Yes (tokens,
+tips,
+sponsored)
+High (email
+signup, optional
+wallet)
+Flownet's differentiation is not any single feature but the integration: the AI feed makes the network
+usable; the on-chain identity makes it trustworthy; and the creator economy makes it sustainable. No
+existing project combines all three.
+The competitive data tells a clear story: Farcaster raised $180M and peaked at 104K DAU but saw
+engagement drop 40% by late 2025 — its co-founder acknowledged that "putting social first didn't work"
+without a compelling AI layer. Bluesky reached 40M users but has no monetization — engagement fell
+50% from peak within months. Lens migrated 650K profiles but retains only 45K WAU due to high
+onboarding friction. Each validates a piece of the thesis; none delivers the whole product.
+2.5  Bluesky & the AT Protocol: A Deeper Look
+Bluesky deserves special attention as the most successful decentralized social project to date
+(Kleppmann et al., 2024). Built on the Authenticated Transfer Protocol (AT Protocol), Bluesky
+introduces several innovations that inform — and constrain — the design space Flownet operates in:
+ Architecture: AT Protocol separates infrastructure into five components — Personal Data Servers
+(PDS) for hosting, Relays for firehose aggregation, App Views for indexing, Feed Generators for
+custom algorithms, and Labelers for moderation. Each layer can have multiple competing providers.
+This modularity is a genuine advance over monolithic platforms.
+ Identity: Users are identified by immutable DIDs (Decentralized Identifiers) with DNS-based handles
+for readability. The did:plc method uses self-certifying operation logs with rotatable keys — meaning
+users can change hosts without losing their identity or social graph. This is the gold standard for
+decentralized identity.
+
+
+PAGE 6
+Flownet Whitepaper
+v1.0 — October 2026
+6
+ Data model: User data lives in signed repositories organized as Merkle Search Trees — a balanced,
+content-addressed structure that allows efficient proofs of inclusion and exclusion. Records use
+DAG-CBOR encoding and conform to schemas called Lexicons, enabling multiple social apps on
+shared infrastructure.
+ Moderation philosophy: AT Protocol separates "speech" (the permissive data layer where anyone
+can publish) from "reach" (the opinionated discovery layer where labelers and feed generators apply
+judgments). This is architecturally elegant and avoids the false dichotomy of "censorship vs. free
+speech."
+Where AT Protocol falls short — and where Flownet extends:
+ No AI-native feed layer: AT Protocol's Feed Generators return post IDs selected by arbitrary criteria,
+but there is no built-in embedding pipeline, no explainability, and no user-facing algorithm
+marketplace. Tens of thousands of custom feeds exist, but they are opaque selection rules — not
+tunable, explainable AI. Flownet's six-stage recommendation pipeline with visible explanation tags is a
+qualitative leap.
+ No creator economy: AT Protocol has no monetization layer. Bluesky reached a $700M valuation
+with zero revenue, and the protocol specification contains no mechanism for creator payments,
+tipping, token-gated content, or sponsored placements. Flownet embeds the economic layer at the
+protocol level.
+ Centralized indexing costs: A full replica of all AT Protocol repositories can be maintained for
+~$153/month (as of mid-2024 with ~6M users), but running an App View with summary indexes is
+substantially more expensive. In practice, Bluesky Social PBC runs nearly all indexing infrastructure.
+Flownet's hybrid architecture avoids this bottleneck by keeping the canonical identity layer on-chain
+while running content indexing as a standard service — no full-network relay required.
+ Public data trade-off: AT Protocol posts, likes, follows, and blocks are all public by design. This
+enables auditing but limits privacy. Flownet adds client-side embeddings and zk-SNARK proofs to
+preserve user privacy while maintaining verifiability.
+ No blockchain integration: AT Protocol deliberately avoids cryptocurrency for identity and naming,
+which simplifies onboarding but forecloses on-chain economic primitives like bonding-curve tokens
+and trustless tipping.
+Flownet's relationship with AT Protocol is complementary, not adversarial. The roadmap includes AT
+Protocol bridge support (Section 10), enabling cross-posting and social-graph import between Flownet
+and Bluesky — extending AT Protocol's reach layer with AI recommendation and economic infrastructure
+it currently lacks.
+
+
+PAGE 7
+Flownet Whitepaper
+v1.0 — October 2026
+7
+3. The Vision: AI-Native Open Social
+Flownet is not another decentralized Twitter. It is an AI-native, open social network built on a simple
+conviction: the algorithm should be a tool the user controls, not a black box the platform profits from.
+Three pillars define the Flownet thesis:
+Pillar
+What It Means
+User-Owned AI Feeds
+Every user chooses, tunes, and can replace the algorithm that ranks their
+feed. Multiple algorithms compete in an open marketplace. Users see why
+each post was recommended.
+Portable Creator
+Identity
+A creator's followers, content history, and reputation are stored as a
+cryptographically signed social graph on-chain. Switch platforms; keep
+your audience.
+Transparent Creator
+Economy
+Revenue flows directly between fans and creators — via tipping,
+token-gated access, and transparent sponsored placements — without the
+platform extracting 50-70% of the value.
+Flownet's key insight is that decentralization and AI are not opposing forces. On-chain identity gives
+users true ownership of their social graph, while off-chain AI provides the personalization and content
+discovery that makes a social network actually usable. The blockchain is the ledger; AI is the lens.
+The result is a social network where alignment is structural, not aspirational: the platform makes money
+when creators make money, because the platform's revenue comes from a small take on genuine value
+exchange — not from selling user attention to the highest bidder.
+3.1  Why Now: Five Converging Tailwinds
+Every technology wave has a moment when the pieces align. For creator-native social, that moment is
+now — driven by five simultaneous shifts:
+ Creator burnout reaches critical mass: 78% of creators report burnout (Patreon 2025), 62% in
+North America (Creators 4 Mental Health 2025), and 37% are considering leaving entirely (Billion
+Dollar Boy 2025). The talent is looking for the exit.
+ AI infrastructure matures: Open-source embedding models (sentence-transformers), vector
+databases (pgvector, Qdrant), and small language models (Llama 3.1, Mistral) make it feasible to run
+personalized AI recommendation at low cost without depending on proprietary APIs.
+ L2 economics collapse gas costs: Base, Optimism, and Arbitrum have brought Ethereum
+transaction costs below $0.01, making on-chain social identity economically viable for the first time.
+Minting a creator token on Base costs under $0.50.
+
+
+PAGE 8
+Flownet Whitepaper
+v1.0 — October 2026
+8
+ Protocol-based social is validated: Bluesky grew to 40 million users. Farcaster raised $180M and
+peaked at 104K DAU. Lens migrated 650K profiles to its own chain. The SocialFi sector hit $5B
+(Chainalysis 2025). Mainstream users will adopt open protocols — they just need a product worth
+switching for.
+ Regulatory clarity emerges: The EU's Digital Services Act and the US SEC's evolving
+token-classification framework provide clearer guardrails for compliant tokenized creator economies,
+reducing the legal risk that froze earlier projects.
+
+
+PAGE 9
+Flownet Whitepaper
+v1.0 — October 2026
+9
+4. How It Works: A User's Journey
+To make the architecture tangible, consider two stories — one user, one creator.
+4.1  Mika Discovers Flownet
+Mika signs up with her email. Optionally, she connects a wallet — but she doesn't need to. The
+onboarding wizard asks three questions about her interests, then offers to import her existing follows from
+Twitter via the social-graph bridge. Within thirty seconds, she has a personalized feed.
+Below each post, Mika sees a small tag: "Recommended because you follow food creators and this post is
+trending in food photography." She taps the tag and opens the algorithm panel. She's currently using
+"Serendipity", a community-built algorithm that blends topic relevance with randomness. She can switch
+to "Deep Focus" (long-form only), "Local Pulse" (location-weighted), or build her own. Each algorithm's
+logic is published and auditable.
+4.2  Ava Migrates Her Audience
+Ava — our food photographer — creates a Flownet creator profile. She mints her creator identity on Base
+(L2 Ethereum), which records her follower relationships in a portable social graph via Ceramic and
+ComposeDB. If Flownet ever shuts down, Ava can point her graph at any compatible client and her
+180,000 followers come with her.
+She enables creator tokens — a bonding-curve ERC-20 that lets superfans buy into her success. Token
+holders unlock exclusive content, early access, and voting on her next recipe series. Ava earns from direct
+tipping, token appreciation, and transparent sponsored placements — partnerships where both the
+creator and the audience can see the sponsor, the terms, and the payment.
+
+
+PAGE 10
+Flownet Whitepaper
+v1.0 — October 2026
+10
+5. Technical Architecture
+Flownet uses a four-layer hybrid architecture that keeps the best of both worlds: on-chain guarantees
+for identity and ownership, off-chain speed for the real-time interactions a social network demands.
+5.1  Layer Overview
+Layer
+Components
+Role
+Client
+Next.js web app, React Native mobile,
+Wallet Connect, Social Import
+User interface and wallet
+integration
+API Gateway
+Node.js + Apollo GraphQL,
+JWT + SIWE Auth, Cloudflare R2 CDN
+Request routing, auth,
+media delivery
+AI + Data
+Python FastAPI ML service,
+PostgreSQL + ClickHouse,
+Meilisearch, Redis
+Recommendation, moderation,
+analytics, search
+Blockchain
++ Storage
+Base L2 smart contracts,
+Ceramic + ComposeDB,
+IPFS / Arweave
+Identity, social graph,
+content permanence
+5.2  Design Principles
+Six principles guide every architectural decision in Flownet:
+ Progressive decentralization: Start with a usable product, decentralize incrementally. Email-first
+signup today; full self-custody as an upgrade path.
+ Credible exit: Users must be able to leave Flownet and take their social graph, content hashes, and
+token balances with them. The on-chain layer guarantees this.
+ AI as user agent: The recommendation system works for the user, not the platform. No
+engagement-maximizing dark patterns. The user's algorithm choice is sovereign.
+ Minimal on-chain footprint: Put only what must be trustless on-chain. Everything else runs on
+optimized off-chain infrastructure for speed and cost.
+ Open by default: All algorithms, moderation policies, and ranking logic are open-source and
+auditable. Trust is verified, not assumed.
+ Creator-aligned economics: Revenue flows through, not from, creators. The platform's incentive is
+to maximize creator revenue, not ad impressions.
+5.3  Hybrid Architecture Rationale
+
+
+PAGE 11
+Flownet Whitepaper
+v1.0 — October 2026
+11
+Fully on-chain social networks face an inescapable trilemma: cost, speed, and UX. Posting a message
+on-chain costs gas; reading a feed requires indexing the entire chain; and wallet-first onboarding alienates
+99% of potential users. Flownet resolves this by putting only what must be trustless on-chain: identity,
+follow relationships, token balances, and content hashes. Everything else — feed ranking, media storage,
+real-time notifications — runs on optimized off-chain infrastructure.
+This is a deliberate contrast with AT Protocol's approach. In AT Protocol, all user data lives in signed
+repositories hosted on Personal Data Servers, and a Relay aggregates updates into a public firehose that
+App Views index. This architecture scales the data layer but creates an expensive indexing bottleneck: a
+full-network relay grows with every user's every action. Flownet avoids this by keeping only the canonical
+ownership records (identity, follows, tokens) on-chain, while content lives in a standard database with
+content hashes anchored to IPFS/Arweave for permanence. The result: sub-200ms feed latency without a
+full-network indexer.
+The bridge between the two layers is the Ceramic social graph. When a user follows a creator, the follow
+is recorded in ComposeDB (a decentralized document store anchored to the Ethereum mainnet via
+Ceramic streams). The Flownet API indexes these streams for fast querying, but the canonical record
+lives on the decentralized layer — giving users credible exit. Unlike AT Protocol's did:plc, which relies on a
+centralized PLC directory (with a transparency log planned but not yet deployed), Ceramic DIDs are
+anchored to Ethereum's mainnet — providing stronger decentralization guarantees from day one, at the
+cost of slightly higher write latency for identity operations.
+5.4  Smart Contracts
+Three core contracts, all deployed on Base L2 for low gas costs:
+ CreatorToken.sol — ERC-20 with a polynomial bonding curve. Creators mint their token; price rises
+with supply, aligning early supporters with creator growth. 5% of each trade goes to the creator; 2% to
+the protocol treasury.
+ TipJar.sol — Gasless tipping via meta-transactions (EIP-2771). Users tip in ETH or stablecoins; the
+creator receives 95%, the protocol takes 5%.
+ AccessPass.sol — ERC-721 NFTs for gated content. Creators define tiers; holding the NFT unlocks
+content in the client. Transferable, so fans can trade access.
+5.5  Security & Privacy Architecture
+Flownet treats privacy as a structural guarantee, not a policy promise. The architecture enforces data
+minimization at every layer:
+ Zero-knowledge proofs for reputation: Creators can prove follower-count thresholds or
+engagement metrics to sponsors without revealing their full audience data, using zk-SNARKs over
+their Ceramic social graph.
+
+
+PAGE 12
+Flownet Whitepaper
+v1.0 — October 2026
+12
+ Client-side embedding: User preference vectors are computed on-device and sent to the
+recommendation service as opaque embeddings — the platform never sees raw browsing history or
+content interaction logs.
+ End-to-end encryption for DMs: All direct messages use the Signal protocol (Double Ratchet +
+X3DH) with keys stored in the user's wallet or secure enclave. Flownet cannot read private messages.
+ Granular consent: Every data-sharing action (e.g., sharing interests with an algorithm, exposing
+follower lists to a sponsor) requires explicit, revocable consent. Users can audit and delete their data
+at any time via a GDPR/CCPA-compliant dashboard.
+ Auditable infrastructure: All recommendation code is open-source. Third-party auditors can verify
+that the platform's data handling matches its stated policies. Smart contract code is verified on-chain
+and covered by a bug-bounty program.
+The guiding principle: users should be able to verify, not just trust, that their data is handled correctly.
+Open-source algorithms and on-chain identity records make this verification practical.
+5.6  Positioning Relative to the AT Protocol
+Flownet's architecture is informed by, but structurally distinct from, Bluesky's AT Protocol. The table below
+maps the key design choices:
+Design Dimension
+AT Protocol (Bluesky)
+Flownet
+Identity
+did:plc (self-certifying op-log) +
+did:web; DNS handles; PLC directory
+run by Bluesky (transparency log
+planned)
+Ceramic DID + Base L2 on-chain
+identity; email-first onboarding with
+optional wallet; social graph anchored to
+Ethereum mainnet via Ceramic streams
+Data Model
+Signed repositories with Merkle
+Search Trees; DAG-CBOR records;
+Lexicon schemas; content-addressed
+media via CID
+Hybrid: off-chain PostgreSQL +
+ClickHouse for real-time content;
+on-chain Ceramic/ComposeDB for
+identity and social graph; IPFS/Arweave
+for content permanence hashes
+Sync &
+Indexing
+Relay firehose aggregates all PDS
+updates into a public stream; App
+Views build full-network indexes; cost
+scales with network size
+API gateway indexes Ceramic streams
+for fast querying; no full-network relay
+required; content indexing is a standard
+service, not a protocol-level commitment
+Feed
+Generation
+Feed Generators return post IDs by
+arbitrary criteria; no built-in AI,
+embedding, or explainability; opaque
+selection rules
+Six-stage AI pipeline (embed → filter →
+score → rank → explain → serve); open
+algorithm marketplace with visible
+explanation tags; sub-200ms latency
+
+
+PAGE 13
+Flownet Whitepaper
+v1.0 — October 2026
+13
+Design Dimension
+AT Protocol (Bluesky)
+Flownet
+Moderation
+"Speech vs. Reach" separation;
+Labelers produce signed metadata;
+clients subscribe to labeler feeds;
+moderation decoupled from hosting
+Adopts speech/reach separation; adds
+three-layer automated defense
+(classifier → community → human);
+moderation runs before ranking so
+algorithms never see removed content
+Economics
+None. No monetization, tipping,
+creator tokens, or revenue sharing.
+Deliberately avoids cryptocurrency.
+Creator tokens (bonding-curve ERC-20),
+gasless tipping, token-gated access,
+transparent sponsored placements;
+5-10% platform take rate
+The core insight: AT Protocol is excellent infrastructure for hosting and syncing decentralized social data,
+but it is deliberately agnostic about AI and economics. Flownet takes the opposite bet — that the feed
+algorithm and the creator economy are not optional features layered on top, but foundational design
+decisions that must be embedded at the protocol level. The two approaches are complementary:
+Flownet's roadmap includes an AT Protocol bridge for cross-network interoperability.
+
+
+PAGE 14
+Flownet Whitepaper
+v1.0 — October 2026
+14
+6. The AI Feed System
+The feed is the beating heart of any social network, and it is where Flownet diverges most sharply from the
+incumbents. Instead of a single, opaque algorithm optimizing for time-on-platform, Flownet provides an
+open algorithm marketplace where multiple recommendation engines compete for user trust.
+6.1  The Recommendation Pipeline
+Every piece of content that enters Flownet passes through a six-stage pipeline, engineered for sub-200ms
+end-to-end latency while maintaining content safety:
+Stage
+Process
+Technology
+1. Ingest
+Content is embedded into a
+384-dim vector via
+sentence-transformers
+all-MiniLM-L6-v2
+(~14ms/post on GPU)
+2. Filter
+Content moderation models
+flag policy violations;
+blocked content is removed
+Fine-tuned BERT classifier
++ rule engine (p95 < 8ms)
+3. Score
+User's selected algorithm
+scores each candidate;
+user embedding is matched
+Pluggable Python modules;
+ANN via pgvector
+(HNSW index)
+4. Rank
+Multi-objective blend:
+relevance, diversity,
+freshness, serendipity
+Weighted Pareto
+optimization with
+configurable knobs
+5. Explain
+Natural-language reason
+generated for each
+recommended post
+Template NLG with
+LLM fallback
+(Llama 3.1 8B)
+6. Serve
+Top-N results cached,
+streamed to client;
+p99 latency target < 200ms
+Redis cache + GraphQL
+subscriptions (SSE
+for mobile)
+6.2  Algorithm Marketplace
+Any developer can publish an algorithm to the Flownet marketplace. An algorithm is a Python module that
+implements a simple interface: it receives a list of candidate posts (with embeddings and metadata) and
+returns a ranked list with scores. Users browse algorithms the way they browse podcast apps — by
+description, rating, and philosophy.
+Built-in algorithms ship with the platform:
+ Chronological — Pure reverse-chronological feed, no ranking
+
+
+PAGE 15
+Flownet Whitepaper
+v1.0 — October 2026
+15
+ Serendipity — Blends topic relevance (40%), social proximity (30%), and controlled randomness
+(30%) for discovery
+ Deep Focus — Prioritizes long-form content (>500 words or >3 min video) with high completion rates
+ Local Pulse — Weights location and language proximity
+ Creator Boost — Surfaces emerging creators with high engagement-per-follower ratios
+6.3  Explainability
+Every post in the feed carries a visible explanation tag. This is not optional, not hidden behind a settings
+menu — it is a first-class UI element. Explanations build trust and give users the feedback they need to
+tune their algorithm selection. They also create a natural accountability mechanism: an algorithm that
+produces poor explanations will be replaced by users.
+Explanations are generated at two levels of detail: a summary tag (one line, always visible — e.g.,
+"Trending in food photography + followed by 3 people you follow") and a deep-dive panel (opened on tap,
+showing the full scoring breakdown: topic match score, social proximity score, freshness score, diversity
+bonus, and the algorithm's own weighting rationale). This two-level design balances glanceability with
+auditability.
+6.4  Content Moderation: Speech vs. Reach
+Flownet adopts the "speech vs. reach" framework pioneered by AT Protocol (Kleppmann et al., 2024)
+and extends it with AI enforcement. The principle: the speech layer (data storage, identity, and federation)
+remains permissive — anyone can publish. The reach layer (discovery, ranking, and recommendation) is
+opinionated — content must pass moderation before the AI pipeline can amplify it. This separation avoids
+the false dichotomy of "censorship vs. free speech" by distinguishing between the right to publish and the
+privilege of algorithmic distribution.
+Within this framework, Flownet's moderation operates as a three-layer defense:
+ Layer 1 — Automated classifiers: A fine-tuned BERT model screens every post at ingest time for
+policy violations (hate speech, harassment, CSAM, spam). Content flagged with high confidence
+(>0.95) is automatically removed; borderline content (0.7-0.95) is routed to human review. Processing
+adds < 8ms per post.
+ Layer 2 — Community reporting: Users can flag content with structured reasons. Reports are
+weighted by reporter reputation (long-standing users with low false-report rates have higher weight).
+Three weighted reports trigger automatic review.
+ Layer 3 — Human appeals: A trained moderation team reviews escalated content and appeals.
+Decisions are logged and published in aggregate (monthly transparency reports) without identifying
+individual users or posts.
+Crucially, moderation happens before ranking. The recommendation pipeline never sees removed
+content, which means algorithms cannot accidentally amplify harmful material. Moderation policies are
+
+
+PAGE 16
+Flownet Whitepaper
+v1.0 — October 2026
+16
+published as open documents, and changes are announced 30 days in advance with community comment
+periods.
+6.5  Cold-Start Strategy
+New users and new creators face the cold-start problem: not enough interaction history to generate
+accurate recommendations. Flownet addresses this at three levels:
+ Social-graph import: Users who connect their Twitter/X or Instagram accounts bring their interest
+signals and follow graph. The system bootstraps recommendations from content their existing follows
+engage with on Flownet.
+ Content-based filtering: For users with no import, the onboarding wizard collects 3-5 topic
+preferences. The initial feed is ranked purely on content similarity (embedding distance to topic
+centroids), without requiring collaborative signals.
+ Exploration bonus: All built-in algorithms include a configurable exploration factor (default 15%) that
+surfaces content outside the user's established preferences, ensuring new creators get distribution
+even without an established audience.
+
+
+PAGE 17
+Flownet Whitepaper
+v1.0 — October 2026
+17
+7. Creator Economy & Monetization
+Flownet's business model is a three-sided marketplace aligning creators, users, and sponsors around
+genuine value exchange.
+7.1  Revenue Streams
+Stream
+Mechanism
+Share at Scale
+Pro Subscriptions
+Users pay $9.99/mo for
+advanced algorithm tools,
+analytics, priority support
+25%
+Sponsored Placements
+Brands pay creators directly;
+Flownet takes 5-10% as
+infrastructure fee
+45%
+Advertiser SaaS
+Self-serve dashboard for
+brand campaign management
+and creator matching
+20%
+Transaction Fees
+2-5% on creator token trades,
+tips, and access-pass sales
+10%
+7.2  Unit Economics
+The critical metric is revenue per creator. Flownet targets mid-tier creators (10K-500K followers) — a
+segment underserved by both traditional platforms (which focus ad dollars on mass-market audiences)
+and Web3 protocols (which attract crypto-native early adopters, not working creators). This segment
+represents approximately 12 million creators globally, generating an estimated $12B in annual
+sponsorship and direct monetization revenue (Goldman Sachs, 2023).
+The blended revenue model diversifies risk: even if token adoption is slow, Pro subscriptions and
+sponsored placements provide predictable SaaS-like revenue. The table below shows conservative
+projections assuming 2% penetration of the addressable mid-tier creator market by Year 3:
+Metric
+Year 1
+Year 2
+Year 3
+Monthly Active Creators
+500
+5,000
+50,000
+ARPU (Blended)
+$0
+$4.50
+$8.00
+Gross Revenue
+$0
+$270K
+$4.8M
+Infra Cost / User
+$0.30
+$0.18
+$0.12
+Gross Margin
+—
+62%
+74%
+
+
+PAGE 18
+Flownet Whitepaper
+v1.0 — October 2026
+18
+7.3  Comparison With Incumbents
+Unlike Instagram's 45% cut on sponsored posts (via brand collabs) or YouTube's 55/45 ad-revenue split,
+Flownet takes only 5-10% on creator-to-brand transactions and zero on peer-to-peer tipping beyond gas.
+The thesis: a low take-rate on a loyal, portable creator base generates more lifetime value than a high
+take-rate on captive, resentful creators.
+8. Tokenomics
+Flownet's on-chain economy is designed for utility, not speculation. There is no "FLOW" governance token
+at launch — a deliberate decision to avoid the regulatory complexity and speculative distortion that have
+plagued Web3 social projects. Instead, the token layer centers on creator tokens: per-creator ERC-20
+assets with bonding-curve pricing.
+8.1  Creator Token Mechanics
+ Bonding curve: Price = k * supplyn, where k and n are set by the creator at mint time. A steeper
+curve (higher n) rewards early supporters more aggressively.
+ Buy/sell: Anyone can buy or sell creator tokens through the bonding curve contract. Liquidity is
+always available — no order book needed.
+ Utility: Holding a creator's token unlocks gated content, voting on creator decisions (e.g., next content
+topic), and priority in sponsored-placement auctions.
+ Fee split: 5% to creator, 2% to protocol, 93% follows the bonding curve.
+8.2  Bonding Curve Mathematics
+The price of a creator token is determined by a polynomial bonding curve. The spot price at any supply
+level is given by:
+ P(s) = k · sn
+where s is the current supply, k is a base price constant (default: 0.0001 ETH), and n is the curve
+exponent (configurable by the creator, typically 1.5-2.0). The cost to purchase Δs tokens starting from
+supply s■ is the integral:
+ Cost(s■, Δs) = k / (n+1) · [(s■ + Δs)n+1 − s■n+1]
+Example: For a creator with k=0.0001, n=2, and current supply of 1,000 tokens, the spot price is 0.0001 ×
+1,000² = 100 ETH. Buying the first 100 tokens of a new creator costs 0.0001/3 × 100³ ≈ 33.33 ETH —
+early supporters enter cheaply. This mechanism ensures that a creator's most loyal early community is
+financially aligned with their growth.
+
+
+PAGE 19
+Flownet Whitepaper
+v1.0 — October 2026
+19
+Supply (tokens)
+Spot Price (k=0.0001, n=1.5)
+Market Cap
+100
+0.1 ETH
+~6.67 ETH
+1,000
+~3.16 ETH
+~126 ETH
+10,000
+~100 ETH
+~4,000 ETH
+50,000
+~1,118 ETH
+~44,721 ETH
+Creators choose their curve parameters at mint time, balancing accessibility (flatter curves let more fans
+participate) against early-supporter rewards (steeper curves). The UI presents three presets —
+Community (n=1.2, broad access), Balanced (n=1.5), and Exclusive (n=2.0, stronger early-mover
+advantage) — with a custom option for advanced users.
+8.3  Future Governance
+A protocol governance token may be introduced in Phase 3 (post-traction) to decentralize protocol
+upgrades, treasury allocation, and algorithm marketplace curation. This will follow a community-first
+distribution model — not a venture-backed token sale — to preserve alignment. Details will be published in
+a separate governance proposal.
+
+
+PAGE 20
+Flownet Whitepaper
+v1.0 — October 2026
+20
+9. Go-to-Market Strategy
+Flownet's go-to-market follows a concentric-circles strategy: start with a tight community, prove the
+thesis, then expand.
+9.1  Phase 1: Anchor Creators (Months 1-4)
+Recruit 20-30 mid-tier creators across three verticals — food, fitness, and indie music — who are vocal
+about platform frustrations. Provide white-glove onboarding: help them set up creator tokens, import their
+audience, and publish their first content. These anchor creators become the proof points that attract
+organic users.
+9.2  Phase 2: Community-Led Growth (Months 5-8)
+ Algorithm marketplace launch: Open the marketplace to third-party developers. Run a hackathon
+("Build-a-Feed") with prize pool to seed the ecosystem.
+ Creator referral program: Existing creators earn token bonuses for onboarding new creators who
+cross a 1,000-follower threshold.
+ Public launch: Open registration, PR push via creator testimonials, and targeted ads on platforms
+where creator frustration is highest (Twitter/X, TikTok).
+9.3  Phase 3: Scale (Months 9-12+)
+ Mobile apps: iOS and Android via React Native/Expo
+ Advertiser SaaS: Self-serve campaign manager for brands
+ Protocol partnerships: Integration with Farcaster (cross-posting), Lens (social graph bridge), and
+major wallet providers
+ International expansion: Localization for top-5 creator markets (US, Brazil, India, Indonesia, Japan)
+9.4  Key Success Metrics
+Each phase has quantitative gates that must be met before proceeding to the next. These metrics ensure
+disciplined scaling:
+Metric
+Phase 1 Gate
+Phase 2 Gate
+Phase 3 Gate
+Active Creators
+20-30 anchors
+500+ organic
+5,000+
+Weekly Active Users
+1,000
+25,000
+250,000
+D7 Retention
+> 40%
+> 35%
+> 30%
+Creator Revenue (monthly)
+> $500 avg
+> $200 avg
+> $150 avg
+
+
+PAGE 21
+Flownet Whitepaper
+v1.0 — October 2026
+21
+Metric
+Phase 1 Gate
+Phase 2 Gate
+Phase 3 Gate
+Algo Switch Rate
+> 20% of users
+tried 2+ algos
+> 30%
+> 40%
+Creator Token Adoption
+10+ creators
+minted tokens
+100+ creators
+1,000+
+10. Roadmap
+Milestone
+Target Date
+Key Deliverables
+Closed Beta
+Jan 2027
+Web app, basic feed, creator profiles,
+social-graph import
+Public Launch
+Mar 2027
+Open registration, 3 built-in algorithms,
+creator tokens, tipping
+Pro Tier + Tokens
+Apr 2027
+Pro subscriptions, advanced analytics,
+creator token marketplace
+Mobile Apps
+Jul 2027
+iOS + Android apps, push notifications,
+offline reading
+Algo Marketplace
+Sep 2027
+Third-party algorithm publishing,
+developer documentation, SDK
+AT Protocol Bridge
+Oct 2027
+Cross-post to Bluesky, import AT Proto
+social graphs, Lexicon compatibility
+Advertiser SaaS
+Q4 2027
+Self-serve brand dashboard,
+campaign management tools
+The roadmap is sequenced to prove the thesis before scaling. Phase 1 validates that AI-controlled
+feeds attract and retain creators. Phase 2 validates that the creator economy generates sustainable
+revenue. Phase 3 scales what works.
+
+
+PAGE 22
+Flownet Whitepaper
+v1.0 — October 2026
+22
+11. Team & Advisors
+Flownet is being built by a multidisciplinary team spanning AI/ML engineering, blockchain development,
+creator-economy product design, and crypto compliance. The founding team combines experience at
+Minerva University's global rotation program — building products across seven countries — with hands-on
+work in Web3 operations, DeFi growth, and content strategy at platforms including exchange and
+venture-backed blockchain projects.
+The team's edge is not just technical — it is structural. Having worked across crypto exchanges, DeFi
+protocols, consulting firms, and creator platforms, the founding team understands both sides of the
+marketplace: the operational pain of creator monetization and the technical plumbing of on-chain identity.
+This cross-functional background informs Flownet's pragmatic approach: decentralize where it matters,
+centralize where it delivers speed.
+We are actively recruiting for the following roles:
+Role
+Focus
+Status
+Lead Full-Stack Engineer
+Next.js, GraphQL, system design
+Hiring
+ML/AI Engineer
+Recommendation systems, NLP,
+vector search
+Hiring
+Smart Contract Developer
+Solidity, Base L2, token
+economics
+Hiring
+Community & Growth Lead
+Creator relations, go-to-market,
+partnerships
+Hiring
+Advisory positions are being discussed with leaders in the decentralized social and creator-economy
+spaces. Announcements will follow.
+12. Risks & Mitigations
+Risk
+Severity
+Mitigation
+Regulatory uncertainty
+around creator tokens /
+securities law
+High
+No protocol governance token at launch; creator
+tokens designed as utility (access gating), not
+investment contracts. Engage legal counsel
+pre-launch.
+Cold-start problem: not
+enough content or users
+High
+Anchor-creator strategy with white-glove onboarding;
+social-graph import reduces switching cost;
+algorithms work with sparse data via content-based
+filtering.
+
+
+PAGE 23
+Flownet Whitepaper
+v1.0 — October 2026
+23
+Risk
+Severity
+Mitigation
+Smart contract exploits
+Medium
+Formal audit before mainnet; use battle-tested
+OpenZeppelin contracts; bug bounty program;
+upgradeable proxy pattern.
+AI model bias or harmful
+content recommendations
+Medium
+Content moderation layer runs before ranking;
+algorithm audit tools; community reporting; human
+review for edge cases.
+Incumbent retaliation (API
+restrictions, legal threats)
+Low
+Open protocols (AT Protocol, Ceramic) provide
+import paths that do not depend on incumbent APIs;
+no scraping or ToS violations.
+
+
+PAGE 24
+Flownet Whitepaper
+v1.0 — October 2026
+24
+13. References
+[1]  Linktree. Creator Economy Report 2023. https://linktr.ee/creator-report
+[2]  SignalFire. Creator Economy Market Map, 2023.
+[3]  Farcaster Protocol. Specification v2. https://github.com/farcasterxyz/protocol
+[4]  Lens Protocol. Documentation. https://docs.lens.xyz
+[5]  Ceramic Network. ComposeDB Documentation. https://composedb.js.org
+[6]  Ethereum Foundation. EIP-2771: Meta Transactions. https://eips.ethereum.org/EIPS/eip-2771
+[7]  OpenZeppelin. Contracts Library v5. https://docs.openzeppelin.com/contracts/5.x/
+[8]  Base (Coinbase). Developer Documentation. https://docs.base.org
+[9]  Arweave. Permanent Data Storage. https://arweave.org
+[10]  IPFS Protocol. Content Addressing. https://docs.ipfs.tech
+[11]  Vitalik Buterin. "Decentralized Society: Finding Web3's Soul." 2022.
+[12]  a16z Crypto. State of Crypto 2024. https://a16zcrypto.com/state-of-crypto
+[13]  Goldman Sachs. The Creator Economy Could Approach $500B by 2027. April 2023.
+[14]  Bluesky / AT Protocol. Federation Architecture. https://atproto.com
+[15]  Friend.tech. Protocol Documentation. https://docs.friend.tech
+[16]  Steemit. Steem Whitepaper. https://steem.com/steem-whitepaper.pdf
+[17]  Mulligan, C. & Dourado, E. "Bonding Curves for Token Distribution." Medium, 2021.
+[18]  World Economic Forum. Digital Media and Society Report 2024.
+[19]  Rebooting Web of Trust. Decentralized Identifiers (DIDs) v1.0. W3C, 2022.
+[20]  Coherent Market Insights. Creator Economy Market Size — $249B in 2026. GlobeNewswire.
+[21]  Patreon. State of Create Report 2025. https://news.patreon.com
+[22]  Billion Dollar Boy. Creator Burnout Survey. July 2025.
+[23]  Creators 4 Mental Health & Lupiani Insights. North American Creator Burnout Study. 2025.
+[24]  Chainalysis. SocialFi Market — 300% YoY Growth to $5B. 2025.
+[25]  Influencer Marketing Hub & NeoReach. Creator Earnings Benchmark. 2025.
+[26]  Kleppmann, M. et al. "Bluesky and the AT Protocol: Usable Decentralized Social Media." Proc. ACM CoNEXT
+Workshop on the Decentralization of the Internet, 2024. arXiv:2402.03239.
+[27]  Newbold, B. et al. "AT Protocol Architecture." IETF Internet-Draft, draft-newbold-at-architecture-00, September 2025.
+[28]  Holmgren, D. "AT Protocol Repository and Sync." IETF Internet-Draft, draft-holmgren-at-repository-00, September
+2025.
+
+
+PAGE 25
+Flownet Whitepaper
+v1.0 — October 2026
+25
+"We are building the social network we wish existed — one where creators own their
+audience, users own their attention, and algorithms are public infrastructure, not
+corporate secrets. Join us."
+ flownet.network  |  hello@flownet.network
