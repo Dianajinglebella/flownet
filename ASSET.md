@@ -1,0 +1,7 @@
+# Original network artwork
+
+Created with the built-in image generation tool. Integrated into the site at [dist/assets/living-network.png](dist/assets/living-network.png). This is conceptual artwork, not a microscopic photograph or evidence of a scientific finding.
+
+Final prompt:
+
+> Use case: stylized-concept. Asset type: original editorial hero artwork for Flownet, a creator-owned social network. Create a premium, exquisitely detailed 3D microscopic network artwork, landscape 3:2 composition. A loose archipelago of interconnected porous organic nodes suspended in a deep cool green darkroom, joined by thousands of hair-thin filament threads. It should feel like a living web or a delicate mycelial nervous system, abstract rather than a literal medical specimen. Some nodes are densely woven, others dissolve into tiny luminous points. The network flows diagonally with poetic asymmetry and substantial negative space. Strong sculptural depth, intricate tangible fibers, restrained pale bioluminescent green highlights echoing #cef79e, predominantly dark green monochrome. Background is a uniform deep green #222f30; no background gradient. The subject emerges through fine local illumination, not big bloom effects. Sophisticated scientific art direction: quiet, strange, elegant, precise. Rounded container will be supplied by the website; do not draw any frame. No text, no lettering, no labels, no logos, no UI, no icons, no chrome spheres, no blue or purple, no rainbow, no stock imagery. High resolution, professionally art directed.
